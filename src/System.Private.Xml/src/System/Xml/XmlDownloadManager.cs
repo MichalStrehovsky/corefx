@@ -34,28 +34,29 @@ namespace System.Xml
         private Stream GetNonFileStream(Uri uri, ICredentials credentials, IWebProxy proxy,
             RequestCachePolicy cachePolicy)
         {
-            WebRequest req = WebRequest.Create(uri);
-            if (credentials != null)
-            {
-                req.Credentials = credentials;
-            }
-            if (proxy != null)
-            {
-                req.Proxy = proxy;
-            }
-            if (cachePolicy != null)
-            {
-                req.CachePolicy = cachePolicy;
-            }
+            throw new NotImplementedException();
+            //WebRequest req = WebRequest.Create(uri);
+            //if (credentials != null)
+            //{
+            //    req.Credentials = credentials;
+            //}
+            //if (proxy != null)
+            //{
+            //    req.Proxy = proxy;
+            //}
+            //if (cachePolicy != null)
+            //{
+            //    req.CachePolicy = cachePolicy;
+            //}
 
-            using (WebResponse resp = req.GetResponse())
-            using (Stream respStream = resp.GetResponseStream())
-            {
-                var result = new MemoryStream();
-                respStream.CopyTo(result);
-                result.Position = 0;
-                return result;
-            }
+            //using (WebResponse resp = req.GetResponse())
+            //using (Stream respStream = resp.GetResponseStream())
+            //{
+            //    var result = new MemoryStream();
+            //    respStream.CopyTo(result);
+            //    result.Position = 0;
+            //    return result;
+            //}
         }
     }
 }

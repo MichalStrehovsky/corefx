@@ -31,31 +31,32 @@ namespace System.Xml
             }
         }
 
-        private async Task<Stream> GetNonFileStreamAsync(Uri uri, ICredentials credentials, IWebProxy proxy,
+        private Task<Stream> GetNonFileStreamAsync(Uri uri, ICredentials credentials, IWebProxy proxy,
             RequestCachePolicy cachePolicy)
         {
-            WebRequest req = WebRequest.Create(uri);
-            if (credentials != null)
-            {
-                req.Credentials = credentials;
-            }
-            if (proxy != null)
-            {
-                req.Proxy = proxy;
-            }
-            if (cachePolicy != null)
-            {
-                req.CachePolicy = cachePolicy;
-            }
+            throw new NotImplementedException();
+            //WebRequest req = WebRequest.Create(uri);
+            //if (credentials != null)
+            //{
+            //    req.Credentials = credentials;
+            //}
+            //if (proxy != null)
+            //{
+            //    req.Proxy = proxy;
+            //}
+            //if (cachePolicy != null)
+            //{
+            //    req.CachePolicy = cachePolicy;
+            //}
 
-            using (WebResponse resp = await req.GetResponseAsync().ConfigureAwait(false))
-            using (Stream respStream = resp.GetResponseStream())
-            {
-                var result = new MemoryStream();
-                await respStream.CopyToAsync(result).ConfigureAwait(false);
-                result.Position = 0;
-                return result;
-            }
+            //using (WebResponse resp = await req.GetResponseAsync().ConfigureAwait(false))
+            //using (Stream respStream = resp.GetResponseStream())
+            //{
+            //    var result = new MemoryStream();
+            //    await respStream.CopyToAsync(result).ConfigureAwait(false);
+            //    result.Position = 0;
+            //    return result;
+            //}
         }
     }
 }
