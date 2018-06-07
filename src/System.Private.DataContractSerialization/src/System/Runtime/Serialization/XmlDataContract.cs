@@ -388,11 +388,11 @@ namespace System.Runtime.Serialization
             else
             {
                 object o = null;
-                if (type == typeof(System.Xml.Linq.XElement))
-                {
-                    o = new System.Xml.Linq.XElement("default");
-                }
-                else
+                //if (type == typeof(System.Xml.Linq.XElement))
+                //{
+                //    o = new System.Xml.Linq.XElement("default");
+                //}
+                //else
                 {
                     ConstructorInfo ctor = GetConstructor();
                     o = ctor.Invoke(new object[] { });
