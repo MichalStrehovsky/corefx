@@ -70,17 +70,17 @@ namespace System.Runtime.Serialization
 
             public XmlFormatClassReaderDelegate GenerateClassReader(ClassDataContract classContract)
             {
-                if (DataContractSerializer.Option == SerializationOption.ReflectionOnly)
-                {
-                    return new ReflectionXmlClassReader(classContract).ReflectionReadClass;
-                }
+                //if (DataContractSerializer.Option == SerializationOption.ReflectionOnly)
+                //{
+                //    return new ReflectionXmlClassReader(classContract).ReflectionReadClass;
+                //}
 #if uapaot
-                else if (DataContractSerializer.Option == SerializationOption.ReflectionAsBackup)
-                {
-                    return new ReflectionXmlClassReader(classContract).ReflectionReadClass;
-                }
+                //else if (DataContractSerializer.Option == SerializationOption.ReflectionAsBackup)
+                //{
+                //    return new ReflectionXmlClassReader(classContract).ReflectionReadClass;
+                //}
 #endif
-                else
+                //else
                 {
 #if uapaot
                     throw new InvalidOperationException("Cannot generate class reader");
@@ -163,17 +163,17 @@ namespace System.Runtime.Serialization
 
             public XmlFormatCollectionReaderDelegate GenerateCollectionReader(CollectionDataContract collectionContract)
             {
-                if (DataContractSerializer.Option == SerializationOption.ReflectionOnly)
-                {
-                    return new ReflectionXmlCollectionReader().ReflectionReadCollection;
-                }
+                //if (DataContractSerializer.Option == SerializationOption.ReflectionOnly)
+                //{
+                //    return new ReflectionXmlCollectionReader().ReflectionReadCollection;
+                //}
 #if uapaot
-                else if (DataContractSerializer.Option == SerializationOption.ReflectionAsBackup)
-                {
-                    return new ReflectionXmlCollectionReader().ReflectionReadCollection;
-                }
+                //else if (DataContractSerializer.Option == SerializationOption.ReflectionAsBackup)
+                //{
+                //    return new ReflectionXmlCollectionReader().ReflectionReadCollection;
+                //}
 #endif
-                else
+                //else
                 {
 #if uapaot
                     throw new InvalidOperationException("Cannot generate class reader");
@@ -189,17 +189,17 @@ namespace System.Runtime.Serialization
 
             public XmlFormatGetOnlyCollectionReaderDelegate GenerateGetOnlyCollectionReader(CollectionDataContract collectionContract)
             {
-                if (DataContractSerializer.Option == SerializationOption.ReflectionOnly)
-                {
-                    return new ReflectionXmlCollectionReader().ReflectionReadGetOnlyCollection;
-                }
+                //if (DataContractSerializer.Option == SerializationOption.ReflectionOnly)
+                //{
+                //    return new ReflectionXmlCollectionReader().ReflectionReadGetOnlyCollection;
+                //}
 #if uapaot
-                else if (DataContractSerializer.Option == SerializationOption.ReflectionAsBackup)
-                {
-                    return new ReflectionXmlCollectionReader().ReflectionReadGetOnlyCollection;
-                }
+                //else if (DataContractSerializer.Option == SerializationOption.ReflectionAsBackup)
+                //{
+                //    return new ReflectionXmlCollectionReader().ReflectionReadGetOnlyCollection;
+                //}
 #endif
-                else
+                //else
                 {
 #if uapaot
                     throw new InvalidOperationException("Cannot generate class reader");
