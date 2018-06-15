@@ -3447,4 +3447,7 @@ Usage: dotnet {0} [--assembly &lt;assembly file path&gt;] [--type &lt;type name&
     <data name="GenerateSerializerNotFound" xml:space="preserve">
     <value>Method 'System.Xml.Serialization.XmlSerializer.GenerateSerializer' was not found. This is likely because you are using an older version of the framework. Please update to .NET Core v2.1 or later.</value>
   </data>
+  <data name="CRE_CodeRemoved" xml:space="preserve">
+    <value>Code to support feature '{0}' was explicitly disabled during publishing. If this is in error, update the project configuration to not disable feature '{0}'.</value>
+  </data>
 </root>

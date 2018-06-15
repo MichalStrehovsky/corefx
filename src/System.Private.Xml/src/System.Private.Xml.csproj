@@ -20,6 +20,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'uapaot-Windows_NT-Debug|AnyCPU'" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'uapaot-Windows_NT-Release|AnyCPU'" />
   <ItemGroup>
+    <Compile Include="$(CommonPath)\System\Runtime\CompilerServices\RemovableAttribute.cs">
+      <Link>System\Runtime\CompilerServices\RemovableAttribute</Link>
+    </Compile>
+    <Compile Include="$(CommonPath)\System\Runtime\CompilerServices\CodeRemovedException.cs">
+      <Link>System\Runtime\CompilerServices\CodeRemovedException.cs</Link>
+    </Compile>
     <Compile Include="$(CommonPath)\System\IO\StringBuilderCache.cs">
       <Link>System\StringBuilderCache.cs</Link>
     </Compile>
