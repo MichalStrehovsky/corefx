@@ -34,7 +34,7 @@ namespace System.Runtime.Serialization
         private ISerializationSurrogateProvider _serializationSurrogateProvider;
         private bool _serializeReadOnlyTypes;
 
-        private static SerializationOption _option = SerializationOption.ReflectionAsBackup;
+        private static SerializationOption _option = IsReflectionAllowed() ? SerializationOption.ReflectionAsBackup : SerializationOption.CodeGenOnly;
         private static bool _optionAlreadySet;
         internal static SerializationOption Option
         {
@@ -48,6 +48,14 @@ namespace System.Runtime.Serialization
                 _optionAlreadySet = true;
                 _option = value;
             }
+        }
+
+#if uapaot
+        [Removable(ReflectionBasedSerializationFeature.Name)]
+#endif
+        private static bool IsReflectionAllowed()
+        {
+            return true;
         }
 
         public DataContractSerializer(Type type)
