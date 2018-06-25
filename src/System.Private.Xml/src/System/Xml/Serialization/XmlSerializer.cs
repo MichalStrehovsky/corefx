@@ -16,6 +16,7 @@ namespace System.Xml.Serialization
     using System.Xml.Serialization.Configuration;
     using System.Diagnostics;
     using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
     using System.Runtime.Versioning;
     using System.Xml;
     using System.Xml.Serialization;
@@ -132,10 +133,19 @@ namespace System.Xml.Serialization
     public class XmlSerializer
     {
 #if FEATURE_SERIALIZATION_UAPAOT
-        public static SerializationMode Mode { get; set; } = SerializationMode.ReflectionAsBackup;
+        public static SerializationMode Mode { get; set; } = SupportsReflectionBasedSerializationFeature ? SerializationMode.ReflectionAsBackup : SerializationMode.PreGenOnly;
 #else
-        internal static SerializationMode Mode { get; set; } = SerializationMode.ReflectionAsBackup;
+        internal static SerializationMode Mode { get; set; } = SupportsReflectionBasedSerializationFeature ? SerializationMode.ReflectionAsBackup : SerializationMode.PreGenOnly;
 #endif
+
+        private static bool SupportsReflectionBasedSerializationFeature
+        {
+            [Removable(ReflectionBasedSerializationFeatureName)]
+            get
+            {
+                return true;
+            }
+        }
 
         private static bool ReflectionMethodEnabled
         {
@@ -144,6 +154,8 @@ namespace System.Xml.Serialization
                 return Mode == SerializationMode.ReflectionOnly || Mode == SerializationMode.ReflectionAsBackup;
             }
         }
+
+        internal const string ReflectionBasedSerializationFeatureName = "System.Xml.Serialization.ReflectionBasedSerialization";
 
         private TempAssembly _tempAssembly;
 #pragma warning disable 0414
@@ -332,6 +344,7 @@ namespace System.Xml.Serialization
 #endif
         }
 
+        [Removable(ReflectionBasedSerializationFeatureName)]
         private XmlTypeMapping GenerateXmlTypeMapping(Type type, XmlAttributeOverrides overrides, Type[] extraTypes, XmlRootAttribute root, string defaultNamespace)
         {
             XmlReflectionImporter importer = new XmlReflectionImporter(overrides, defaultNamespace);
@@ -510,6 +523,7 @@ namespace System.Xml.Serialization
             xmlWriter.Flush();
         }
 
+        [Removable(ReflectionBasedSerializationFeatureName)]
         private void SerializeUsingReflection(XmlWriter xmlWriter, object o, XmlSerializerNamespaces namespaces, string encodingStyle, string id)
         {
             XmlMapping mapping = GetMapping();
@@ -660,6 +674,7 @@ namespace System.Xml.Serialization
             }
         }
 
+        [Removable(ReflectionBasedSerializationFeatureName)]
         private object DeserializeUsingReflection(XmlReader xmlReader, string encodingStyle, XmlDeserializationEvents events)
         {
             XmlMapping mapping = GetMapping();
